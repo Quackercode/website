@@ -40,7 +40,7 @@
       function loop() {
         const hRange = window.innerWidth - dvdLogo.clientWidth
         const vRange = window.innerHeight - dvdLogo.clientHeight
-        const time = performance.now() * 0.2
+        const time = performance.now() * 0.5
     
         const x = Math.abs((time % (hRange * 2)) - hRange)
         dvdLogo.style.left = `${x}px`
