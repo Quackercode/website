@@ -9,7 +9,7 @@ let dvd;
 let r, g, b;
 
 function preload() {
-  dvd = loadImage('qc_logo.png');
+  dvd = loadImage('qc_logo_s.png');
 }
 
 function setup() {
