@@ -1,59 +1,20 @@
-let x;
-let y;
+const dvdLogo = "qc_logo_s.png"
+  document.body.style.backgroundColor = "black"
+  const colors = ["red", "green", "blue", "yellow", "orange", "purple"]
 
-let xspeed;
-let yspeed;
+  function loop() {
+    const hRange = window.innerWidth - dvdLogo.clientWidth
+    const vRange = window.innerHeight - dvdLogo.clientHeight
+    const time = performance.now() * 0.2
 
-let dvd;
+    const x = Math.abs((time % (hRange * 2)) - hRange)
+    dvdLogo.style.left = `${x}px`
+    const y = Math.abs((time % (vRange * 2)) - vRange)
+    dvdLogo.style.top = `${y}px`
 
-let r, g, b;
+    const bounces = Math.floor(time / hRange) + Math.floor(time / vRange)
+    dvdLogo.style.fill = colors[bounces % colors.length]
 
-function preload() {
-  dvd = loadImage('qc_logo_s.png');
-}
-
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  x = random(width);
-  y = random(height);
-  xspeed = 10;
-  yspeed = 10;
-  pickColor();
-}
-
-function pickColor() {
-  r = random(100, 256);
-  g = random(100, 256);
-  b = random(100, 256);
-}
-
-function draw() {
-  background(0);
-  // rect(x, y, 80, 60);
-  // Draw the DVD logo
-  tint(r, g, b);
-  image(dvd, x, y);
-
-  x = x + xspeed;
-  y = y + yspeed;
-
-  if (x + dvd.width >= width) {
-    xspeed = -xspeed;
-    x = width - dvd.width;
-    pickColor();
-  } else if (x <= 0) {
-    xspeed = -xspeed;
-    x = 0;
-    pickColor();
+    requestAnimationFrame(loop)
   }
-
-  if (y + dvd.height >= height) {
-    yspeed = -yspeed;
-    y = height - dvd.height;
-    pickColor();
-  } else if (y <= 0) {
-    yspeed = -yspeed;
-    y = 0;
-    pickColor();
-  }
-}
+  loop()
